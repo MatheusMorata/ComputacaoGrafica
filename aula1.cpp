@@ -1,20 +1,26 @@
 #include <GL/glut.h>
 
 const char* tituloJanela = "Janela GLUT Básica";
-const int larguraJanela = 800; 
-const int alturaJanela = 600;  
+const int larguraJanela = 800; // Largura da janela
+const int alturaJanela = 600;  // Altura da janela
+
+// Função para desenhar um quadrado
+void quadrado(float x, float y, float tamanho) {
+    glBegin(GL_QUADS);
+        glVertex2f(x, y);                         // Vértice inferior esquerdo
+        glVertex2f(x + tamanho, y);              // Vértice inferior direito
+        glVertex2f(x + tamanho, y + tamanho);    // Vértice superior direito
+        glVertex2f(x, y + tamanho);              // Vértice superior esquerdo
+    glEnd();
+}
+
 // Função de desenho
 void desenhar() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_TRIANGLES);
-        glColor3f(1.0, 0.0, 0.0); // Vermelho
-        glVertex2f(-0.5, -0.5);
-        glColor3f(0.0, 1.0, 0.0); // Verde
-        glVertex2f(0.5, -0.5);
-        glColor3f(0.0, 0.0, 1.0); // Azul
-        glVertex2f(0.0, 0.5);
-    glEnd();
+    // Desenha um quadrado
+    glColor3f(1.0, 0.0, 0.0); // Vermelho
+    quadrado(-0.5, -0.5, 1.0);
 
     glFlush();
 }
