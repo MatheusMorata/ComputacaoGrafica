@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <cmath> // Necessário para funções trigonométricas como sin/cos
 
 const char* tituloJanela = "Janela GLUT Básica";
 const int larguraJanela = 800; // Largura da janela
@@ -23,6 +24,18 @@ void triangulo(float x1, float y1, float x2, float y2, float x3, float y3) {
     glEnd();
 }
 
+// Função para desenhar um círculo
+void circulo(float cx, float cy, float raio, int segmentos) {
+    glBegin(GL_POLYGON);
+    for (int i = 0; i < segmentos; ++i) {
+        float angulo = 2.0f * M_PI * i / segmentos; // Calcula o ângulo do segmento
+        float x = cos(angulo) * raio; // Coordenada X do ponto
+        float y = sin(angulo) * raio; // Coordenada Y do ponto
+        glVertex2f(cx + x, cy + y);   // Adiciona o vértice
+    }
+    glEnd();
+}
+
 // Função de desenho
 void desenhar() {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -34,6 +47,10 @@ void desenhar() {
     // Desenha um triângulo
     glColor3f(1.0, 0.0, 0.0); // Vermelho
     triangulo(-0.5, -0.5, 0.0, 0.5, 0.5, -0.5);
+
+    // Desenha um círculo
+    glColor3f(0.0, 0.0, 1.0); // Azul
+    circulo(-0.3, -0.3, 0.2, 50); // 50 segmentos para suavizar o círculo
 
     glFlush();
 }
