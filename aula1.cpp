@@ -14,6 +14,15 @@ void retangulo(float x, float y, float largura, float altura) {
     glEnd();
 }
 
+// Função para desenhar um triângulo
+void triangulo(float x1, float y1, float x2, float y2, float x3, float y3) {
+    glBegin(GL_TRIANGLES);
+        glVertex2f(x1, y1); // Primeiro vértice
+        glVertex2f(x2, y2); // Segundo vértice
+        glVertex2f(x3, y3); // Terceiro vértice
+    glEnd();
+}
+
 // Função de desenho
 void desenhar() {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -21,6 +30,10 @@ void desenhar() {
     // Desenha um retângulo
     glColor3f(0.0, 1.0, 0.0); // Verde
     retangulo(0.2, 0.2, 0.6, 0.3);
+
+    // Desenha um triângulo
+    glColor3f(1.0, 0.0, 0.0); // Vermelho
+    triangulo(-0.5, -0.5, 0.0, 0.5, 0.5, -0.5);
 
     glFlush();
 }
