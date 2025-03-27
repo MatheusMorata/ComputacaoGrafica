@@ -4,13 +4,13 @@ const char* tituloJanela = "Janela GLUT Básica";
 const int larguraJanela = 800; // Largura da janela
 const int alturaJanela = 600;  // Altura da janela
 
-// Função para desenhar um quadrado
-void quadrado(float x, float y, float tamanho) {
+// Função para desenhar um retângulo
+void retangulo(float x, float y, float largura, float altura) {
     glBegin(GL_QUADS);
         glVertex2f(x, y);                         // Vértice inferior esquerdo
-        glVertex2f(x + tamanho, y);              // Vértice inferior direito
-        glVertex2f(x + tamanho, y + tamanho);    // Vértice superior direito
-        glVertex2f(x, y + tamanho);              // Vértice superior esquerdo
+        glVertex2f(x + largura, y);              // Vértice inferior direito
+        glVertex2f(x + largura, y + altura);     // Vértice superior direito
+        glVertex2f(x, y + altura);               // Vértice superior esquerdo
     glEnd();
 }
 
@@ -18,9 +18,9 @@ void quadrado(float x, float y, float tamanho) {
 void desenhar() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // Desenha um quadrado
-    glColor3f(1.0, 0.0, 0.0); // Vermelho
-    quadrado(-0.5, -0.5, 1.0);
+    // Desenha um retângulo
+    glColor3f(0.0, 1.0, 0.0); // Verde
+    retangulo(0.2, 0.2, 0.6, 0.3);
 
     glFlush();
 }
