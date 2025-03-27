@@ -56,14 +56,34 @@ void desenhar() {
 
 // Callback para eventos de teclado
 void teclado(unsigned char tecla, int x, int y) {
-    if (tecla == 'm' || tecla == 'M') { // Se a tecla 'm' ou 'M' for pressionada
+    if (tecla == 'm' || tecla == 'M') {
         // Altera a cor do fundo para valores aleatórios
         corFundo[0] = static_cast<float>(rand()) / RAND_MAX;
         corFundo[1] = static_cast<float>(rand()) / RAND_MAX;
         corFundo[2] = static_cast<float>(rand()) / RAND_MAX;
 
-        glClearColor(corFundo[0], corFundo[1], corFundo[2], 1.0); // Atualiza a cor de fundo
-        glutPostRedisplay(); // Solicita o redesenho da janela
+        glClearColor(corFundo[0], corFundo[1], corFundo[2], 1.0);
+        glutPostRedisplay();
+    }
+}
+
+// Callback para eventos de mouse
+void mouse(int botao, int estado, int x, int y) {
+    if (estado == GLUT_DOWN) { // Quando o botão do mouse é pressionado
+        if (botao == GLUT_LEFT_BUTTON) { // Botão esquerdo
+            // Define uma cor diferente da tecla 'm'
+            corFundo[0] = 1.0; // Vermelho
+            corFundo[1] = 1.0; // Verde
+            corFundo[2] = 0.0; // Amarelo
+        } else if (botao == GLUT_RIGHT_BUTTON) { // Botão direito
+            // Outra cor
+            corFundo[0] = 0.0; // Azul
+            corFundo[1] = 1.0; // Verde
+            corFundo[2] = 1.0; // Ciano
+        }
+
+        glClearColor(corFundo[0], corFundo[1], corFundo[2], 1.0);
+        glutPostRedisplay();
     }
 }
 
@@ -76,7 +96,8 @@ int main(int argc, char** argv) {
     glClearColor(corFundo[0], corFundo[1], corFundo[2], 1.0);
 
     glutDisplayFunc(desenhar);
-    glutKeyboardFunc(teclado); // Configura o callback para eventos de teclado
+    glutKeyboardFunc(teclado); // Configura o callback para teclado
+    glutMouseFunc(mouse);      // Configura o callback para mouse
 
     glutMainLoop();
 
