@@ -45,19 +45,24 @@ void display() {
     quadrado();
 
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity(); 
-    glTranslated(-1.5, 0.5, 0.0);
-    glScaled(0.5, 1.5, 1.0);      
+    glLoadIdentity();
+    glTranslated(-2.0, 0.5, 0.0);
+    glScaled(1.0, 1.5, 1.0);    
     quadrado();
 
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity(); 
-    glTranslated(1.5, 0.5, 0.0); 
-    glScaled(0.5, 1.5, 1.0);      
+    glLoadIdentity();
+    glTranslated(2.0, 0.5, 0.0);   
+    glScaled(1.0, 1.5, 1.0);      
     quadrado();
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(-2.0, 2.0, 0.0);  
+    glScaled(1.0, 1.0, 1.0);  
+    triangulo();
 
-    
+
     glFlush();
 }
 
