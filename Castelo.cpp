@@ -62,6 +62,10 @@ void display() {
     glScaled(1.0, 1.0, 1.0);  
     triangulo();
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(2.0, 2.0, 0.0); 
+    triangulo();
 
     glFlush();
 }
