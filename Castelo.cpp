@@ -1,10 +1,9 @@
 #include <GL/glut.h>
 
-
 void init();
 void display();
 
-void quadrado(){
+void quadrado() {
     glColor3f(0, 0, 0); // Define cor do quadrado (preto)
      
     glBegin(GL_LINE_LOOP);
@@ -14,10 +13,9 @@ void quadrado(){
         glVertex3f(-1.0, -1.0, 0.0);
         glVertex3f(1.0, -1.0, 0.0);
     glEnd();
-
 }
 
-void triangulo(){
+void triangulo() {
     glColor3f(1, 0, 0); // Define cor do triângulo (vermelho)
      
     glBegin(GL_LINE_LOOP);
@@ -28,40 +26,49 @@ void triangulo(){
     glEnd();
 }
 
-void init(){
+void init() {
     glClearColor(1.0, 1.0, 1.0, 1.0); // Define cor inicial do fundo (branco)
 
     // Define o sistema de projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-2, 2,-2, 2, -2, 2);
+    glOrtho(-3, 3, -3, 3, -3, 3);
 }
 
-void display(){
+void display() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     /*
-        DESENHA AS FIGURAS AQUI
+        DESENHANDO O CASTELO DE ITAIPAVA
     */
 
     quadrado();
 
     glMatrixMode(GL_MODELVIEW);
-    glTranslated(-0.5, 0.0, 0);
+    glLoadIdentity(); 
+    glTranslated(-1.5, 0.5, 0.0);
+    glScaled(0.5, 1.5, 1.0);      
     quadrado();
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity(); 
+    glTranslated(1.5, 0.5, 0.0); 
+    glScaled(0.5, 1.5, 1.0);      
+    quadrado();
+
+
+    
     glFlush();
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv) {
     int janela_x = 800; 
     int janela_y = 800;
     int inicial_x = 200;
     int inicial_y = 200;
 
-
     glutInit(&argc, argv);  // Inicializa o GLUT
-    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(janela_x, janela_y); // Tamanho da janela
     glutInitWindowPosition(inicial_x, inicial_y); // Posição inicial da janela
     glutCreateWindow("Castelo de Itaipava"); // Título da janela
