@@ -5,7 +5,6 @@ void init();
 void display();
 
 void quadrado(){
-    glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0, 0, 0); // Define cor do quadrado (preto)
      
     glBegin(GL_LINE_LOOP);
@@ -46,7 +45,10 @@ void display(){
     */
 
     quadrado();
-    triangulo();
+
+    glMatrixMode(GL_MODELVIEW);
+    glTranslated(-0.5, 0.0, 0);
+    quadrado();
 
     glFlush();
 }
