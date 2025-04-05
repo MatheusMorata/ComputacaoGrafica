@@ -1,7 +1,34 @@
 #include <GL/glut.h>
 
 
-void init(void){
+void init();
+void display();
+
+void quadrado(){
+    glColor3f(0, 0, 0); // Define cor do quadrado (preto)
+     
+    glBegin(GL_POLYGON);
+        // Vértices do quadrado
+        glVertex3f(0.5, 0.5, 0.0);
+        glVertex3f(-0.5, 0.5, 0.0);
+        glVertex3f(-0.5, -0.5, 0.0);
+        glVertex3f(0.5, -0.5, 0.0);
+    glEnd();
+
+}
+
+void triangulo(){
+    glColor3f(1, 0, 0); // Define cor do triângulo (vermelho)
+     
+    glBegin(GL_POLYGON);
+        // Vértices do triângulo
+        glVertex3f(0.5, 0.5, 0.0);
+        glVertex3f(-0.5, 0.5, 0.0);
+        glVertex3f(0.0, 1, 0.0);
+    glEnd();
+}
+
+void init(){
 
     glClearColor(1.0, 1.0, 1.0, 1.0); // Define cor inicial (branco)
 
@@ -20,6 +47,7 @@ void display(){
     */
 
     quadrado();
+    triangulo();
 
     glFlush();
 }
