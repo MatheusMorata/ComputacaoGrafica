@@ -42,30 +42,42 @@ void display() {
         DESENHANDO O CASTELO DE ITAIPAVA
     */
 
+    // PILAR CENTRAL
     quadrado();
 
+    // PILAR DA ESQUERDA
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(-2.0, 0.5, 0.0);
     glScaled(1.0, 1.5, 1.0);    
     quadrado();
 
+    // PILAR DA DIREITA
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(2.0, 0.5, 0.0);   
     glScaled(1.0, 1.5, 1.0);      
     quadrado();
 
+    // TELHADO ESQUERDA
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(-2.0, 2.0, 0.0);  
     glScaled(1.0, 1.0, 1.0);  
     triangulo();
 
+    // TELHADO DIREITA
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(2.0, 2.0, 0.0); 
     triangulo();
+
+    // PORTA DO CASTELO
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.0, -0.5, 0.0);  
+    glScaled(0.5, 0.5, 1.0); 
+    quadrado();
 
     glFlush();
 }
