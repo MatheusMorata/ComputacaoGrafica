@@ -5,14 +5,15 @@ void init();
 void display();
 
 void quadrado(){
+    glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0, 0, 0); // Define cor do quadrado (preto)
      
-    glBegin(GL_POLYGON);
+    glBegin(GL_LINE_LOOP);
         // Vértices do quadrado
-        glVertex3f(0.5, 0.5, 0.0);
-        glVertex3f(-0.5, 0.5, 0.0);
-        glVertex3f(-0.5, -0.5, 0.0);
-        glVertex3f(0.5, -0.5, 0.0);
+        glVertex3f(1.0, 1.0, 0.0);   
+        glVertex3f(-1.0, 1.0, 0.0);  
+        glVertex3f(-1.0, -1.0, 0.0);
+        glVertex3f(1.0, -1.0, 0.0);
     glEnd();
 
 }
@@ -20,26 +21,24 @@ void quadrado(){
 void triangulo(){
     glColor3f(1, 0, 0); // Define cor do triângulo (vermelho)
      
-    glBegin(GL_POLYGON);
+    glBegin(GL_LINE_LOOP);
         // Vértices do triângulo
-        glVertex3f(0.5, 0.5, 0.0);
-        glVertex3f(-0.5, 0.5, 0.0);
-        glVertex3f(0.0, 1, 0.0);
+        glVertex3f(-1.0, 0.0, 0.0);
+        glVertex3f(1.0, 0.0, 0.0);
+        glVertex3f(0.0, 1.0, 0.0);
     glEnd();
 }
 
 void init(){
-
     glClearColor(1.0, 1.0, 1.0, 1.0); // Define cor inicial do fundo (branco)
 
     // Define o sistema de projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1, 1,-1, 1, -1, 1);
+    glOrtho(-2, 2,-2, 2, -2, 2);
 }
 
 void display(){
-
     glClear(GL_COLOR_BUFFER_BIT);
 
     /*
