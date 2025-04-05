@@ -30,7 +30,7 @@ void triangulo(){
 
 void init(){
 
-    glClearColor(1.0, 1.0, 1.0, 1.0); // Define cor inicial (branco)
+    glClearColor(1.0, 1.0, 1.0, 1.0); // Define cor inicial do fundo (branco)
 
     // Define o sistema de projeção
     glMatrixMode(GL_PROJECTION);
