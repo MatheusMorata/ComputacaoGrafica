@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <math.h>
 
 void init();
 void display();
@@ -23,6 +24,16 @@ void triangulo() {
         glVertex3f(0.0, 1.0, 0.0);
         glVertex3f(-1.0, 0.0, 0.0);
         glVertex3f(1.0, 0.0, 0.0);
+    glEnd();
+}
+
+void circulo(double radius){
+    int d;
+    glBegin(GL_LINE_LOOP);
+    for(d = 0; d < 32; d++){
+        double angle =  (6.14/32) * d;
+        glVertex3f(radius*cos(angle), radius*sin(angle), 0);
+    }
     glEnd();
 }
 
@@ -53,10 +64,19 @@ void display(){
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glTranslated(-1.0, -1.0, 0.0);  
-    glRotated(90.0, 0.0, 0.0, 1.0); 
-    glScaled(1.0, 1.0, 1.0);  
+    glTranslated(-1.0, -0.5, 0.0);
+    glScaled(1.0, -0.5, 1.0);
     triangulo();
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.0, 2.0, 0.0);
+    circulo(0.4);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.0, 1.0, 0.0);
+    circulo(0.4);
 
     glFlush();
 }
