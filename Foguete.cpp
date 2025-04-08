@@ -91,6 +91,37 @@ void display(){
     glTranslated(0.0, 1.0, 0.0);
     circulo(0.4);
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(-0.5, -0.5, 1.0);
+    glScaled(0.25, 0.25, 1.0);
+    quadrado();
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.5, -0.5, 1.0);
+    glScaled(0.25, 0.25, 1.0);
+    quadrado();
+
+    // FUMAÇA
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(-0.5, -1.75, 1.0);
+    glScaled(0.1, 0.5, 1.0);
+    quadrado();
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(-0.1, -1.75, 1.0);
+    glScaled(0.1, 0.5, 1.0);
+    quadrado();
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.3, -1.75, 1.0);
+    glScaled(0.1, 0.5, 1.0);
+    quadrado();
+
     glFlush();
 }
 
