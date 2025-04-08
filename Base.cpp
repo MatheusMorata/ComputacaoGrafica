@@ -16,8 +16,7 @@ void display(){
 }
 
 void init(){
-    glClearColor(1.0, 1.0, 1.0); // Cor inicial (BRANCO)
-
+    glClearColor(1.0, 1.0, 1.0, 1.0); // Cor inicial (BRANCO)
 
     // Projeção
     glMatrixMode(GL_PROJECTION);
@@ -31,13 +30,12 @@ int main(int argc, char** argv){
     int janela_y = 800;
     int inicial_x = 200;
     int inicial_y = 200;
-    char[80] titulo_janela = 'Codigo base';
 
     glutInit(&argc, argv); // Inicializa o GLUT
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(janela_x, janela_y); // Tamanho da janela
     glutInitWindowPosition(inicial_x,inicial_y); // Posição inicial da janela
-    glutCreateWindow(titulo_janela); // Título da janela
+    glutCreateWindow("Codigo base"); // Título da janela
     init();
     glutDisplayFunc(display);
     glutMainLoop();
