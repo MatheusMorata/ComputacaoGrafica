@@ -51,23 +51,36 @@ void display(){
 
     /* DESENHANDO UM FOGUETE */
 
+    // CORPO
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(0.0, 1.0, 0.0);
     glScaled(1.0, 2.0, 1.0); 
     quadrado();
 
+    // CABEÇA 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(0.0, 3.0, 0.0);
     triangulo();
 
+    // ASA ESQUERDA
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glTranslated(-1.0, -0.5, 0.0);
-    glScaled(1.0, -0.5, 1.0);
+    glTranslated(-1.0, 0.0, 0.0);  
+    glScaled(1.0, 1.0, 1.0);       
+    glRotated(90.0, 0.0, 0.0, 1.0);
     triangulo();
 
+    // ASA DIREITA
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(1.0, 0.0, 0.0);  
+    glRotated(-90.0, 0.0, 0.0, 1.0); 
+    glScaled(1.0, 1.0, 1.0);  
+    triangulo();
+
+    // JANELAS
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslated(0.0, 2.0, 0.0);
