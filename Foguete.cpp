@@ -20,9 +20,9 @@ void triangulo() {
      
     glBegin(GL_LINE_LOOP);
         // Vértices do triângulo
+        glVertex3f(0.0, 1.0, 0.0);
         glVertex3f(-1.0, 0.0, 0.0);
         glVertex3f(1.0, 0.0, 0.0);
-        glVertex3f(0.0, 1.0, 0.0);
     glEnd();
 }
 
@@ -32,7 +32,7 @@ void init(){
     // Projeção
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(5, -5, 5, -5, 5,-5);
+    glOrtho(-6, 6, -6, 6, -6, 6);
 }
 
 void display(){
@@ -40,11 +40,22 @@ void display(){
 
     /* DESENHANDO UM FOGUETE */
 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.0, 1.0, 0.0);
+    glScaled(1.0, 2.0, 1.0); 
     quadrado();
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glTranslated(0.0, 1.0, 0.0);
+    glTranslated(0.0, 3.0, 0.0);
+    triangulo();
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(-1.0, -1.0, 0.0);  
+    glRotated(90.0, 0.0, 0.0, 1.0); 
+    glScaled(1.0, 1.0, 1.0);  
     triangulo();
 
     glFlush();
