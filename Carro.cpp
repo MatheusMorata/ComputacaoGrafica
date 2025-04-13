@@ -4,6 +4,38 @@
 void init();
 void display();
 
+void circulo(double radius){
+    int d;
+    glBegin(GL_LINE_LOOP);
+    for(d = 0; d < 32; d++){
+        double angle =  (6.14/32) * d;
+        glVertex3f(radius*cos(angle), radius*sin(angle), 0);
+    }
+    glEnd();
+}
+
+void quadrado(){
+
+    glColor3f(0, 0, 0); // Define cor do quadrado (preto)
+         
+    glBegin(GL_LINE_LOOP);
+        // Vértices do quadrado
+        glVertex3f(1.0, 1.0, 0.0);   
+        glVertex3f(-1.0, 1.0, 0.0);  
+        glVertex3f(-1.0, -1.0, 0.0);
+        glVertex3f(1.0, -1.0, 0.0);
+    glEnd();
+}
+
+void triangulo(){
+    glBegin(GL_LINE_LOOP);
+        // Vértices do triângulo
+        glVertex3f(0.0, 1.0, 0.0);
+        glVertex3f(-1.0, 0.0, 0.0);
+        glVertex3f(1.0, 0.0, 0.0);
+    glEnd();
+}
+
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -14,7 +46,6 @@ void init(){
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
-
 
     /* DESENHE AQUI */
 
