@@ -6,7 +6,8 @@ void display();
 
 void circulo(double radius){
     int d;
-    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0, 0.0, 0.0);
+    glBegin(GL_POLYGON);
     for(d = 0; d < 32; d++){
         double angle =  (6.14/32) * d;
         glVertex3f(radius*cos(angle), radius*sin(angle), 0);
@@ -41,14 +42,13 @@ void init(){
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(1, -1, 1, -1, 1, -1);
+    glOrtho(2, -2, 2, -2, 2, -2);
 }
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
 
     /* DESENHE AQUI */
-
 
     glFlush();
 }
