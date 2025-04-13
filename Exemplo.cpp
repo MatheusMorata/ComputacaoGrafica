@@ -415,3 +415,36 @@ int main(int argc, char** argv){
     return 0;
 }
 ///////////////////////////////////////////////////////////////////```
+
+
+void carro() {
+    // Corpo do carro (verde)
+    glPushMatrix();
+        glColor3f(0.0, 1.0, 0.0);      // Verde
+        glTranslatef(0.0, 0.0, 0.0);   // Posição do corpo
+        glScalef(2.0, 0.5, 1.0);       // Escala para retângulo
+        quadrado();
+    glPopMatrix();
+
+    // Teto do carro (verde escuro)
+    glPushMatrix();
+        glColor3f(0.0, 0.6, 0.0);      // Verde escuro
+        glTranslatef(0.0, 0.5, 0.0);   // Posição do teto
+        glScalef(0.7, 0.7, 1.0);       // Escala menor
+        triangulo();
+    glPopMatrix();
+
+    // Roda esquerda (preta)
+    glPushMatrix();
+        glColor3f(0.0, 0.0, 0.0);      // Preto
+        glTranslatef(-0.8, -0.3, 0.0);
+        circulo(0.2);
+    glPopMatrix();
+
+    // Roda direita (preta)
+    glPushMatrix();
+        glColor3f(0.0, 0.0, 0.0);      // Preto
+        glTranslatef(0.8, -0.3, 0.0);
+        circulo(0.2);
+    glPopMatrix();
+}
