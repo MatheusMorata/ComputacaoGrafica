@@ -6,7 +6,7 @@ void display();
 
 void circulo(double radius){
     int d;
-    glColor3f(0.0, 0.0, 0.0);
+
     glBegin(GL_POLYGON);
     for(d = 0; d < 32; d++){
         double angle =  (6.14/32) * d;
@@ -43,15 +43,27 @@ void triangulo(){
 void roda(){
 
     glPushMatrix();
+        glColor3f(0.0, 0.0, 0.0);
+        glTranslated(1.0, 0.8, 0.0);
+        glScaled(0.8, 0.8, 0.0);
         circulo(1.0);
     glPopMatrix();
 
     glPushMatrix();
-        glColor3f(1.0, 0.0, 0.0);
-        glTranslated(2.0, 0.0, 0.0);
-        glScaled(0.8, 0.8, 0.0);
+        glColor3f(0.8, 0.8, 0.8);
+        glTranslated(1.0, 0.8, 0.0);
+        glScaled(0.6, 0.6, 0.0);
         circulo(1.0);
     glPopMatrix();
+
+    glPushMatrix();
+        glColor3f(0.0, 0.0, 0.0);
+        glTranslated(1.0, 0.8, 0.0);
+        glScaled(0.2, 0.2, 0.0);
+        circulo(1.0);
+
+    glPopMatrix();
+
 }
 
 void chassi(){
@@ -72,9 +84,15 @@ void chassi(){
 
 void carro() {
 
-    chassi();
+    roda(); // Roda Traseira
 
-    roda();
+    // Roda dianteira
+    glPushMatrix();
+        glTranslated(-2.0, 0.0, 0.0);
+        roda();
+    glPopMatrix();
+
+    chassi();
 }
 
 void init(){
