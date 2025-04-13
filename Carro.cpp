@@ -17,9 +17,9 @@ void circulo(double radius){
 
 void quadrado(){
 
-    glColor3f(0, 0, 0); // Define cor do quadrado (preto)
+    glColor3f(1.0, 0.0, 0.0); // Define cor do quadrado (Vermelho)
          
-    glBegin(GL_LINE_LOOP);
+    glBegin(GL_POLYGON);
         // Vértices do quadrado
         glVertex3f(1.0, 1.0, 0.0);   
         glVertex3f(-1.0, 1.0, 0.0);  
@@ -29,7 +29,10 @@ void quadrado(){
 }
 
 void triangulo(){
-    glBegin(GL_LINE_LOOP);
+
+    glColor3f(0.0, 0.0, 0.0); // Define cor o 
+
+    glBegin(GL_POLYGON);
         // Vértices do triângulo
         glVertex3f(0.0, 1.0, 0.0);
         glVertex3f(-1.0, 0.0, 0.0);
@@ -37,19 +40,56 @@ void triangulo(){
     glEnd();
 }
 
+void roda(){
+
+    glPushMatrix();
+        circulo(1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+        glColor3f(1.0, 0.0, 0.0);
+        glTranslated(2.0, 0.0, 0.0);
+        glScaled(0.8, 0.8, 0.0);
+        circulo(1.0);
+    glPopMatrix();
+}
+
+void chassi(){
+
+    // Quadrado inferior
+    glPushMatrix();  
+        glScaled(2.0, 0.5, 1.0);     
+        quadrado();
+    glPopMatrix();
+        
+    // Quadrado superior
+    glPushMatrix();
+        glTranslated(0.5, -0.9, 0.0);
+        glScaled(1.0, 0.4, 0.0);
+        quadrado();
+    glPopMatrix();
+}
+
+void carro() {
+
+    chassi();
+
+    roda();
+}
+
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(2, -2, 2, -2, 2, -2);
+    glOrtho(6, -6, 6, -6, 6, -6);
 }
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
 
     /* DESENHE AQUI */
-
+    carro();
     glFlush();
 }
 
