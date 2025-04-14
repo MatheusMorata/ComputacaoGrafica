@@ -124,6 +124,16 @@ void grama(){
     glPopMatrix();
 }
 
+void asfalto(){
+
+    glColor3f(0.5, 0.5, 0.5);
+    glPushMatrix();
+        glTranslated(0.0, 3.0, 0.0);
+        glScaled(6.0, 1.4, 1.0);
+        quadrado();
+    glPopMatrix();
+
+}
 
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -137,8 +147,20 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT);
 
     /* DESENHE AQUI */
-    carro();
+    
+    glPushMatrix();
+        glTranslated(0.0, -2.0, 0.0);
+        glScaled(1.0, 0.8, 1.0);
+        asfalto();
+    glPopMatrix();
+
     grama();
+    asfalto();
+
+    glPushMatrix();
+        glTranslated(0.0, 0.8, 0.0);
+        carro();
+    glPopMatrix();
 
     glFlush();
 }
