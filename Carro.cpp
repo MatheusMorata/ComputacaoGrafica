@@ -16,8 +16,6 @@ void circulo(double radius){
 }
 
 void quadrado(){
-
-    glColor3f(1.0, 0.0, 0.0); // Define cor do quadrado (Vermelho)
          
     glBegin(GL_POLYGON);
         // Vértices do quadrado
@@ -64,36 +62,68 @@ void roda(){
 
     glPopMatrix();
 
+    glPushMatrix();
+        glColor3f(0.0, 0.0, 0.0); 
+        glTranslated(1.0, 0.8, 0.0); 
+
+        glBegin(GL_LINES);
+        for (int i = 0; i < 8; i++) {
+            float angle = i * M_PI / 4.0; 
+            float x = 0.8 * cos(angle);  
+            float y = 0.8 * sin(angle);
+            glVertex2f(0.0f, 0.0f);       
+            glVertex2f(x, y);           
+        }
+        glEnd();
+    glPopMatrix();
+
 }
 
 void chassi(){
 
+    glColor3f(1.0, 0.0, 0.0); // Define cor do quadrado (Vermelho)
     // Quadrado inferior
     glPushMatrix();  
-        glScaled(2.0, 0.5, 1.0);     
+        glScaled(2.5, 0.5, 1.0);     
         quadrado();
     glPopMatrix();
         
     // Quadrado superior
     glPushMatrix();
-        glTranslated(0.5, -0.9, 0.0);
+        glTranslated(0.8, -0.9, 0.0);
         glScaled(1.0, 0.4, 0.0);
         quadrado();
     glPopMatrix();
 }
 
+
 void carro() {
 
-    roda(); // Roda Traseira
+    // Roda traseira
+    glPushMatrix();
+        glTranslated(0.5, 0.0, 0.0);
+        roda(); 
+    glPopMatrix();
 
     // Roda dianteira
     glPushMatrix();
-        glTranslated(-2.0, 0.0, 0.0);
+        glTranslated(-2.5, 0.0, 0.0);
         roda();
     glPopMatrix();
 
     chassi();
 }
+
+void grama(){
+    
+    glColor3f(0.0, 1.0, 0.0);
+    glPushMatrix();
+        glTranslated(0.0, 6.0, 0.0);
+        glScaled(6.0, 2.0, 1.0);
+        quadrado();
+    glPopMatrix();
+}
+
 
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -108,6 +138,8 @@ void display(){
 
     /* DESENHE AQUI */
     carro();
+    grama();
+
     glFlush();
 }
 
