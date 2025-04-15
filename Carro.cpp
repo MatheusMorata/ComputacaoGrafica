@@ -150,26 +150,62 @@ void montanha(){
 
 }
 
-void sol(){
+void sol() {
 
-    glColor3f(1.0, 1.0, 0.0); // Cor: amarelo
+    glColor3f(1.0, 1.0, 0.0); // Cor: Amarelo
     circulo(1.0);
-
+    
+    glColor3f(1.0, 0.5, 0.0); // Cor: Laranja
+    glBegin(GL_LINES);
+    for(int i = 0; i < 12; i++) {
+        double angle = (2 * 3.1415926535 / 12) * i; 
+        
+        float x1 = cos(angle);
+        float y1 = sin(angle);
+        
+        float x2 = 1.5 * cos(angle);
+        float y2 = 1.5 * sin(angle);
+        
+        glVertex3f(x1, y1, 0);
+        glVertex3f(x2, y2, 0);
+    }
+    glEnd();
 }
 
-void aerogerador(){
+void helice(){
 
     glColor3f(1.0, 0.0, 0.0);
 
-    // Tentativa de uma hélice
     glBegin(GL_POLYGON);
         glVertex3f(0.0, 0.0, 0.0);
         glVertex3f(0.5, -0.1, 0.0);
         glVertex3f(1.5, 0.0, 0.0);
         glVertex3f(0.5, 0.1, 0.0);
     glEnd();
+}
 
+void aerogerador(){
+    
+    glPushMatrix();
+        glRotated(45, 0.0, 0.0, 1.0);
+        helice();
+    glPopMatrix();
 
+    glPushMatrix();
+        glRotated(-90.0, 0.0, 0.0, 1.0);
+        helice();
+    glPopMatrix();
+
+    glPushMatrix();
+        glRotated(-225, 0.0, 0.0, 1.0);
+        helice();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslated(0.0, 1.0, 0.0);
+        glScaled(0.05, 1.0, 1.0);
+        quadrado();
+    glPopMatrix();
 }
 
 void init(){
@@ -219,8 +255,21 @@ void display(){
         asfalto();
     glPopMatrix();
     
+    // Aerogerador esquerda
     glPushMatrix();
-        glTranslated(0.0, -5.0, 1.0);
+        glTranslated(4.0, -3.0, 1.0);
+        aerogerador();
+    glPopMatrix();
+
+    // Aerogerador centro
+    glPushMatrix();
+        glTranslated(1.5, -3.5, 1.0);
+        aerogerador();
+    glPopMatrix();
+
+    //Aerogerador direita
+    glPushMatrix();
+        glTranslated(-1.0, -3.2, 1.0);
         aerogerador();
     glPopMatrix();
 
