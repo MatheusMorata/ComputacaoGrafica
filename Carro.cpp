@@ -28,11 +28,9 @@ void quadrado(){
 
 void triangulo(){
 
-    glColor3f(0.0, 0.0, 0.0); // Define cor o 
-
     glBegin(GL_POLYGON);
         // Vértices do triângulo
-        glVertex3f(0.0, 1.0, 0.0);
+        glVertex3f(0.0, -1.0, 0.0);
         glVertex3f(-1.0, 0.0, 0.0);
         glVertex3f(1.0, 0.0, 0.0);
     glEnd();
@@ -96,7 +94,6 @@ void chassi(){
     glPopMatrix();
 }
 
-
 void carro() {
 
     // Roda traseira
@@ -116,7 +113,7 @@ void carro() {
 
 void grama(){
     
-    glColor3f(0.0, 1.0, 0.0);
+    glColor3f(0.0, 1.0, 0.0); // Cor: verde
     glPushMatrix();
         glTranslated(0.0, 6.0, 0.0);
         glScaled(6.0, 2.0, 1.0);
@@ -126,12 +123,52 @@ void grama(){
 
 void asfalto(){
 
-    glColor3f(0.5, 0.5, 0.5);
+    glColor3f(0.5, 0.5, 0.5); // Cor: cinza
     glPushMatrix();
         glTranslated(0.0, 3.0, 0.0);
         glScaled(6.0, 1.4, 1.0);
         quadrado();
     glPopMatrix();
+
+}
+
+void ceu(){
+
+    glColor3f(0.0, 0.8, 1.0); // Cor: azul
+
+    glPushMatrix();
+        glTranslated(0.0, -3.0, 0.0);
+        glScaled(6.0, 4.0, 1.0);
+        quadrado();
+    glPopMatrix();
+}
+
+void montanha(){
+
+    glColor3f(0.0, 1.0, 0.0); // Cor: verde
+    triangulo();
+
+}
+
+void sol(){
+
+    glColor3f(1.0, 1.0, 0.0); // Cor: amarelo
+    circulo(1.0);
+
+}
+
+void aerogerador(){
+
+    glColor3f(1.0, 0.0, 0.0);
+
+    // Tentativa de uma hélice
+    glBegin(GL_POLYGON);
+        glVertex3f(0.0, 0.0, 0.0);
+        glVertex3f(0.5, -0.1, 0.0);
+        glVertex3f(1.5, 0.0, 0.0);
+        glVertex3f(0.5, 0.1, 0.0);
+    glEnd();
+
 
 }
 
@@ -147,11 +184,44 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT);
 
     /* DESENHE AQUI */
-    
+
+    ceu();
+
+    glPushMatrix();
+        glTranslated(-4.0, -4.5, 1.0);
+        sol();
+    glPopMatrix();
+
+    // Montanha da esquerda
+    glPushMatrix();
+        glTranslated(4.0, -0.7, 1.0);
+        glScaled(4.0, 3.5, 1.0);
+        montanha();
+    glPopMatrix();
+
+    // Montanha do meio
+    glPushMatrix();
+        glTranslated(1.0, -0.7, 1.0);
+        glScaled(4.0, 4.0, 1.0);
+        montanha();
+    glPopMatrix();
+
+    // Montanha da direita
+    glPushMatrix();
+        glTranslated(-4.0, -0.7, 1.0);
+        glScaled(-3.0, 2.0, 1.0);
+        montanha();
+    glPopMatrix();
+
     glPushMatrix();
         glTranslated(0.0, -2.0, 0.0);
         glScaled(1.0, 0.8, 1.0);
         asfalto();
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslated(0.0, -5.0, 1.0);
+        aerogerador();
     glPopMatrix();
 
     grama();
