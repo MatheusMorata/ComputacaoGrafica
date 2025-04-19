@@ -3,6 +3,7 @@
 
 void init();
 void display();
+int frameNumber = 0;
 
 void circulo(double radius){
     int d;
@@ -208,6 +209,12 @@ void aerogerador(){
     glPopMatrix();
 }
 
+void doFrame(int v){
+    frameNumber+=1;
+    glutPostRedisplay();
+    glutTimerFunc(33, doFrame,0); 
+}
+
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -225,6 +232,7 @@ void display(){
 
     glPushMatrix();
         glTranslated(-4.0, -4.5, 1.0);
+        glRotated(frameNumber, 0.0, 0.0, 1.0);
         sol();
     glPopMatrix();
 
@@ -297,6 +305,7 @@ int main(int argc, char** argv){
     glutCreateWindow("Renault 19");
     init();
     glutDisplayFunc(display);
+    glutTimerFunc(33, doFrame, 0);
     glutMainLoop();
     return 0;
 }
