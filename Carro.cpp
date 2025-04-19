@@ -37,8 +37,7 @@ void triangulo(){
     glEnd();
 }
 
-void roda(){
-
+void roda() {
     glPushMatrix();
         glColor3f(0.0, 0.0, 0.0);
         glTranslated(1.0, 0.8, 0.0);
@@ -58,12 +57,12 @@ void roda(){
         glTranslated(1.0, 0.8, 0.0);
         glScaled(0.2, 0.2, 0.0);
         circulo(1.0);
-
     glPopMatrix();
 
     glPushMatrix();
         glColor3f(0.0, 0.0, 0.0); 
         glTranslated(1.0, 0.8, 0.0); 
+        glRotated(-(frameNumber * 5), 0.0, 0.0, 1.0); 
 
         glBegin(GL_LINES);
         for (int i = 0; i < 8; i++) {
@@ -75,7 +74,6 @@ void roda(){
         }
         glEnd();
     glPopMatrix();
-
 }
 
 void chassi(){
@@ -185,27 +183,23 @@ void helice(){
     glEnd();
 }
 
-void aerogerador(){
-    
-    glPushMatrix();
-        glRotated(45, 0.0, 0.0, 1.0);
-        helice();
-    glPopMatrix();
-
-    glPushMatrix();
-        glRotated(-90.0, 0.0, 0.0, 1.0);
-        helice();
-    glPopMatrix();
-
-    glPushMatrix();
-        glRotated(-225, 0.0, 0.0, 1.0);
-        helice();
-    glPopMatrix();
-
+void aerogerador() {
+    // Mastro (não gira)
     glPushMatrix();
         glTranslated(0.0, 1.0, 0.0);
         glScaled(0.05, 1.0, 1.0);
         quadrado();
+    glPopMatrix();
+
+    glPushMatrix();
+        glRotated(-(frameNumber * 2), 0.0, 0.0, 1.0); 
+        
+        for(int i = 0; i < 3; i++) {
+            glPushMatrix();
+                glRotated(120 * i, 0.0, 0.0, 1.0);
+                helice();
+            glPopMatrix();
+        }
     glPopMatrix();
 }
 
@@ -232,7 +226,7 @@ void display(){
 
     glPushMatrix();
         glTranslated(-4.0, -4.5, 1.0);
-        glRotated(frameNumber, 0.0, 0.0, 1.0);
+        glRotated(-(frameNumber)/2, 0.0, 0.0, 1.0);
         sol();
     glPopMatrix();
 
