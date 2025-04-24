@@ -6,6 +6,8 @@
 
 #include <GL/glut.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
 void init();
 void display();
@@ -13,6 +15,17 @@ int frameNumber = 0;
 float velocidadeCarro = 0.0;
 float direcaoCarro = 0.0;
 bool teclaPressionada = true;
+
+typedef struct {
+    float x;
+    float tamanho;
+} CirculoAzul;
+
+#define MAX_CIRCULOS 10 // Define o número máximo de círculos
+float circulosX[MAX_CIRCULOS]; // Posições X dos círculos
+float circulosTamanho[MAX_CIRCULOS]; // Tamanhos dos círculos
+int numCirculos = 0; // Contador de círculos ativos
+
 
 void circulo(double radius){
     int d;
@@ -220,7 +233,6 @@ void doFrame(int v){
     glutTimerFunc(33, doFrame,0); 
 }
 
-
 /* 
    Move o carro para direita, apertando D 
    Move o carro para esquerda, apertando A
@@ -241,6 +253,23 @@ void teclado(unsigned char tecla, int x, int y){
 
 void tecladoSolto(unsigned char tecla, int x, int y){
     teclaPressionada = false;
+}
+
+void gerarCirculosAzuis(int v) {
+    // Limpa círculos antigos periodicamente
+    if (frameNumber % 100 == 0) {
+        numCirculos = 0;
+    }
+    
+    // Adiciona um novo círculo a cada 30 frames
+    if (frameNumber % 30 == 0 && numCirculos < MAX_CIRCULOS) {
+        circulosX[numCirculos] = (rand() % 120 - 60) / 10.0f; // Posição X aleatória (-6 a 6)
+        circulosTamanho[numCirculos] = (rand() % 30 + 10) / 100.0f; // Tamanho (0.1 a 0.4)
+        numCirculos++;
+    }
+    
+    glutPostRedisplay();
+    glutTimerFunc(33, gerarCirculosAzuis, 0);
 }
 
 void init(){
@@ -317,6 +346,16 @@ void display(){
         carro();
     glPopMatrix();
 
+    // Desenha os círculos azuis
+    glColor3f(0.0, 0.0, 1.0); // Cor: Azul
+    for (int i = 0; i < numCirculos; i++) {
+        glPushMatrix();
+            glTranslated(circulosX[i], 0.0, 0.0); 
+            glScaled(circulosTamanho[i], circulosTamanho[i], 1.0); 
+            circulo(1.0);
+        glPopMatrix();
+    }
+
     glFlush();
 }
 
@@ -326,6 +365,7 @@ int main(int argc, char** argv){
     int inicial_x = 300;
     int inicial_y = 300;
 
+    srand(time(NULL));
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(janela_x, janela_y);
@@ -336,6 +376,7 @@ int main(int argc, char** argv){
     glutKeyboardFunc(teclado);
     glutKeyboardUpFunc(tecladoSolto);
     glutTimerFunc(33, doFrame, 0);
+    glutTimerFunc(33, gerarCirculosAzuis, 0);
     glutMainLoop();
     return 0;
 }
