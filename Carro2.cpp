@@ -10,7 +10,7 @@
 void init();
 void display();
 int frameNumber = 0;
-float velocidadeCarro = -6.0;
+float velocidadeCarro = 0.0;
 
 void circulo(double radius){
     int d;
@@ -285,15 +285,8 @@ void display(){
     grama();
     asfalto();
 
-    glPushMatrix();
-        if(velocidadeCarro > 60){
-            velocidadeCarro = -30;
-        }
-        glTranslated(-(velocidadeCarro)/5, 0.8, 0.0);
-        carro();
-    glPopMatrix();
-    velocidadeCarro++;
-
+    carro();
+    
     glFlush();
 }
 
