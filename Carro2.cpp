@@ -216,6 +216,19 @@ void doFrame(int v){
     glutTimerFunc(33, doFrame,0); 
 }
 
+
+/* 
+   Move o carro para direita, apertando D 
+   Move o carro para esquerda, apertando A
+*/
+void teclado(unsigned char tecla, int x, int y){
+    if(tecla == 'a' || tecla == 'A'){
+        velocidadeCarro += 0.3;
+    }else if(tecla == 'd' || tecla == 'D'){
+        velocidadeCarro -= 0.3;
+    }
+}
+
 void init(){
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -285,8 +298,11 @@ void display(){
     grama();
     asfalto();
 
-    carro();
-    
+    glPushMatrix();
+        glTranslated(velocidadeCarro, 1.0,0.0);
+        carro();
+    glPopMatrix();
+
     glFlush();
 }
 
@@ -303,6 +319,7 @@ int main(int argc, char** argv){
     glutCreateWindow("Renault 19");
     init();
     glutDisplayFunc(display);
+    glutKeyboardFunc(teclado);
     glutTimerFunc(33, doFrame, 0);
     glutMainLoop();
     return 0;
