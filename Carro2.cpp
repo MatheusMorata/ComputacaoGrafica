@@ -11,6 +11,8 @@ void init();
 void display();
 int frameNumber = 0;
 float velocidadeCarro = 0.0;
+float direcaoCarro = 0.0;
+bool teclaPressionada = true;
 
 void circulo(double radius){
     int d;
@@ -68,8 +70,10 @@ void roda() {
 
     glPushMatrix();
         glColor3f(0.0, 0.0, 0.0); 
-        glTranslated(1.0, 0.8, 0.0); 
-        glRotated(-(frameNumber * 5), 0.0, 0.0, 1.0); 
+        glTranslated(1.0, 0.8, 0.0);
+        if(teclaPressionada){
+            glRotated( direcaoCarro * (frameNumber * 5.0), 0.0, 0.0, 1.0);
+        }  
 
         glBegin(GL_LINES);
         for (int i = 0; i < 8; i++) {
@@ -222,11 +226,21 @@ void doFrame(int v){
    Move o carro para esquerda, apertando A
 */
 void teclado(unsigned char tecla, int x, int y){
+    teclaPressionada = true;
+
     if(tecla == 'a' || tecla == 'A'){
         velocidadeCarro += 0.3;
+        direcaoCarro = 1.0;
     }else if(tecla == 'd' || tecla == 'D'){
         velocidadeCarro -= 0.3;
+        direcaoCarro = -1.0;
+    }else{
+        direcaoCarro = 0.0;
     }
+}
+
+void tecladoSolto(unsigned char tecla, int x, int y){
+    teclaPressionada = false;
 }
 
 void init(){
@@ -320,6 +334,7 @@ int main(int argc, char** argv){
     init();
     glutDisplayFunc(display);
     glutKeyboardFunc(teclado);
+    glutKeyboardUpFunc(tecladoSolto);
     glutTimerFunc(33, doFrame, 0);
     glutMainLoop();
     return 0;
