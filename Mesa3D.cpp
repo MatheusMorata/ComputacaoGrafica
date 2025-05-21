@@ -9,43 +9,50 @@ void Pe() {
 
 void Assento(){
     glPushMatrix();
-        glScalef(1.2f, 0.1f, 1.2f); // Transformar em um plano
+        glScalef(1.2f, 0.1f, 1.2f); // Transformei em um plano
         glutSolidCube(1.0);
     glPopMatrix();
 }
 
-void Cadeira(){
 
-    // Pé da cadeira dianteiro direito
+void Cadeira() {
+    // Pé dianteiro direito 
     glPushMatrix();
-        glTranslatef(-1.0f, 1.0f, 0.0f);
+        glTranslatef(0.5f, -0.5f, 0.5f);
         Pe();
     glPopMatrix();
-
-
-    // Pé da cadeira dianteiro esquerdo
+    
+    // Pé dianteiro esquerdo 
     glPushMatrix();
-        glTranslatef(-1.0f, -1.0f, 0.0f);
+        glTranslatef(-0.5f, -0.5f, 0.5f);
         Pe();
     glPopMatrix();
-
-    // Pé da cadeira traseiro direito
+    
+    // Pé traseiro direito 
     glPushMatrix();
-        glTranslatef(1.0f, 1.0f, 0.0f);
+        glTranslatef(0.5f, -0.5f, -0.5f);
         Pe();
     glPopMatrix();
-
-    // Pé da cadeira traseiro esquerdo
+    
+    // Pé traseiro esquerdo 
     glPushMatrix();
-        glTranslatef(1.0f, -1.0f, 0.0f);
+        glTranslatef(-0.5f, -0.5f, -0.5f);
         Pe();
     glPopMatrix();
-
+    
+    // Assento inferior
     glPushMatrix();
-        glTranslatef(0.0f, 0.05f, 0.0f);
+        Assento();
+    glPopMatrix();
+
+    // Encosto
+    glPushMatrix();
+        glTranslatef(0.0f, 0.5f, -0.55f);
+        glRotatef(90, 1.0f, 0.0f, 0.0f);
         Assento();
     glPopMatrix();
 }
+    
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
