@@ -21,7 +21,6 @@ void Mesa(){
     glPopMatrix();
 }
 
-
 void Cadeira() {
     // Pé dianteiro direito 
     glPushMatrix();
@@ -59,7 +58,6 @@ void Cadeira() {
         Assento();
     glPopMatrix();
 }
-    
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -74,8 +72,33 @@ void display() {
         0.0, 1.0, 0.0    // vetor para cima
     );
     
-    Cadeira();
     Mesa();
+
+    // Cadeira dianteira direita
+    glPushMatrix();
+        glTranslatef(2.0f, 0.0f, -1.0f); 
+        Cadeira();
+    glPopMatrix();
+
+    // Cadeira traseira direita
+    glPushMatrix();
+        glTranslatef(2.0f, 0.0f, 2.0f);
+        glRotatef(180, 0.0f, 1.0f, 0.0f); 
+        Cadeira();
+    glPopMatrix();
+
+    // Cadeira dianteira esquerda
+    glPushMatrix();
+        glTranslatef(-2.0f, 0.0f, -1.0f); 
+        Cadeira();
+    glPopMatrix();
+
+    // Cadeira traseira esquerda
+    glPushMatrix();
+        glTranslatef(-2.0f, 0.0f, 2.0f); 
+        glRotatef(180, 0.0f, 1.0f, 0.0f);
+        Cadeira();
+    glPopMatrix();
 
     glFlush();
 }
