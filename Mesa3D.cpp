@@ -14,13 +14,6 @@ void Assento(){
     glPopMatrix();
 }
 
-void BarraDiagonalLateral() {
-    glPushMatrix();
-        glScalef(0.2f, 0.2f, 1.4f);  // Fina e longa na direção Z (profundidade)
-        glutSolidCube(1.0);
-    glPopMatrix();
-}
-
 void Mesa(){
     glPushMatrix();
         glScalef(6.0f, 0.1f, 2.0f); // Transformei em um plano
@@ -44,19 +37,6 @@ void Cadeira() {
 
     glPushMatrix();
         glTranslatef(0.5f, -0.5f, 0.0f);
-        glRotatef(-45, 1.0f, 0.0f, 0.0f);
-        BarraDiagonalLateral();
-    glPopMatrix();
-
-    // Barras diagonais em X - lateral esquerda (x = -0.5)
-    glPushMatrix();
-        glTranslatef(-0.5f, -0.5f, 0.0f);
-        glRotatef(45, 1.0f, 0.0f, 0.0f);
-        BarraDiagonalLateral();
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(-0.5f, -0.5f, 0.0f);
         glRotatef(-45, 1.0f, 0.0f, 0.0f);
         BarraDiagonalLateral();
     glPopMatrix();
