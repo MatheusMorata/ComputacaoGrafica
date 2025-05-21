@@ -21,7 +21,6 @@ void BarraDiagonalLateral() {
     glPopMatrix();
 }
 
-
 void Mesa(){
     glPushMatrix();
         glScalef(6.0f, 0.1f, 2.0f); // Transformei em um plano
@@ -66,15 +65,13 @@ void Cadeira() {
     glPushMatrix();
         Assento();
     glPopMatrix();
-
-    /
-
+}
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     // Câmera
     gluLookAt(
@@ -116,24 +113,20 @@ void display() {
 
 void reshape(GLint w, GLint h) {
     glMatrixMode(GL_PROJECTION);
-    GLfloat aspect = GLfloat(w) / GLfloat(h);
     glLoadIdentity();
 
+    GLfloat aspect = GLfloat(w) / GLfloat(h);
+
     if (w <= h) {
-        // width is smaller, so stretch out the height
+        // width is smaller, stretch out height
         glOrtho(-2.5, 2.5, -2.5/aspect, 2.5/aspect, -10.0, 10.0);
     } else {
-        // height is smaller, so stretch out the width
+        // height is smaller, stretch out width
         glOrtho(-2.5*aspect, 2.5*aspect, -2.5, 2.5, -10.0, 10.0);
     }
-
-
-    //gluPerspective (60,aspect, 0.1, 15);
-
 }
 
 void init() {
-
     GLfloat black[] = { 0.0, 0.0, 0.0, 1.0 };
     GLfloat yellow[] = { 1.0, 1.0, 0.0, 1.0 };
     GLfloat cyan[] = { 0.0, 1.0, 1.0, 1.0 };
@@ -155,16 +148,13 @@ void init() {
     glLightfv(GL_LIGHT1, GL_SPECULAR, white);
     glLightfv(GL_LIGHT1, GL_POSITION, direction1);
 
-    glEnable(GL_LIGHTING);                // so the renderer considers light
-    glEnable(GL_LIGHT0);                  // turn LIGHT0 on
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
-    glEnable(GL_DEPTH_TEST);              // so the renderer considers depth
-
+    glEnable(GL_DEPTH_TEST);
 }
 
-
 int main(int argc, char** argv) {
-
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowPosition(80, 80);
@@ -174,5 +164,5 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     init();
     glutMainLoop();
-
+    return 0;
 }
