@@ -14,12 +14,13 @@ void Assento(){
     glPopMatrix();
 }
 
-void BarraDiagonal() {
+void BarraDiagonalLateral() {
     glPushMatrix();
-        glScalef(1.4f, 0.2f, 0.2f);  // Estica na horizontal
+        glScalef(0.2f, 0.2f, 1.4f);  // Fina e longa na direção Z (profundidade)
         glutSolidCube(1.0);
     glPopMatrix();
 }
+
 
 void Mesa(){
     glPushMatrix();
@@ -35,18 +36,30 @@ void Cadeira() {
     glPushMatrix(); glTranslatef( 0.5f, -0.5f, -0.5f); Pe(); glPopMatrix(); // trás dir
     glPushMatrix(); glTranslatef(-0.5f, -0.5f, -0.5f); Pe(); glPopMatrix(); // trás esq
 
-    // X: frente esquerda → trás direita
+    // Barras diagonais em X - lateral direita (x = 0.5)
     glPushMatrix();
-        glTranslatef(0.0f, -0.5f, 0.0f);  // Centraliza no nível do chão
-        glRotatef(45, 0.0f, 1.0f, 0.0f);  // Inclina para formar a diagonal
-        BarraDiagonal();
+        glTranslatef(0.5f, -0.5f, 0.0f);       // Centro entre os pés direitos
+        glRotatef(45, 1.0f, 0.0f, 0.0f);       // Inclina no eixo X
+        BarraDiagonalLateral();
     glPopMatrix();
 
-    // X: frente direita → trás esquerda
     glPushMatrix();
-        glTranslatef(0.0f, -0.5f, 0.0f);
-        glRotatef(-45, 0.0f, 1.0f, 0.0f);
-        BarraDiagonal();
+        glTranslatef(0.5f, -0.5f, 0.0f);
+        glRotatef(-45, 1.0f, 0.0f, 0.0f);
+        BarraDiagonalLateral();
+    glPopMatrix();
+
+    // Barras diagonais em X - lateral esquerda (x = -0.5)
+    glPushMatrix();
+        glTranslatef(-0.5f, -0.5f, 0.0f);
+        glRotatef(45, 1.0f, 0.0f, 0.0f);
+        BarraDiagonalLateral();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-0.5f, -0.5f, 0.0f);
+        glRotatef(-45, 1.0f, 0.0f, 0.0f);
+        BarraDiagonalLateral();
     glPopMatrix();
 
     // Assento
@@ -54,13 +67,7 @@ void Cadeira() {
         Assento();
     glPopMatrix();
 
-    // Encosto
-    glPushMatrix();
-        glTranslatef(0.0f, 0.5f, -0.55f);
-        glRotatef(90, 1.0f, 0.0f, 0.0f);
-        Assento();
-    glPopMatrix();
-}
+    /
 
 
 void display() {
