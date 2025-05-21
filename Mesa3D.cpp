@@ -14,6 +14,13 @@ void Assento(){
     glPopMatrix();
 }
 
+void Mesa(){
+    glPushMatrix();
+        glScalef(6.0f, 0.1f, 2.0f); // Transformei em um plano
+        glutSolidCube(1.0);
+    glPopMatrix();
+}
+
 
 void Cadeira() {
     // Pé dianteiro direito 
@@ -68,6 +75,7 @@ void display() {
     );
     
     Cadeira();
+    Mesa();
 
     glFlush();
 }
