@@ -28,23 +28,16 @@ void Cadeira() {
     glPushMatrix(); glTranslatef( 0.5f, -0.5f, -0.5f); Pe(); glPopMatrix(); // trás dir
     glPushMatrix(); glTranslatef(-0.5f, -0.5f, -0.5f); Pe(); glPopMatrix(); // trás esq
 
-    // Barras diagonais em X - lateral direita (x = 0.5)
-    glPushMatrix();
-        glTranslatef(0.5f, -0.5f, 0.0f);       // Centro entre os pés direitos
-        glRotatef(45, 1.0f, 0.0f, 0.0f);       // Inclina no eixo X
-        BarraDiagonalLateral();
-    glPopMatrix();
-
-    glPushMatrix();
-        glTranslatef(0.5f, -0.5f, 0.0f);
-        glRotatef(-45, 1.0f, 0.0f, 0.0f);
-        BarraDiagonalLateral();
-    glPopMatrix();
-
     // Assento
+    Assento();
+
+    // Encosto
     glPushMatrix();
+        glTranslatef(0.0f, 0.5f, -0.55f);
+        glRotatef(90, 1.0f, 0.0f, 0.0f);
         Assento();
     glPopMatrix();
+
 }
 
 void display() {
