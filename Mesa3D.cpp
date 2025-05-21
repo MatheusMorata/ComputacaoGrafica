@@ -76,7 +76,7 @@ void display() {
 
     // Cadeira traseira esquerda
     glPushMatrix();
-        glTranslatef(-2.0f, 0.0f, 2.0f); 
+        glTranslatef(-1.5f, 0.0f, 2.0f); 
         glRotatef(180, 0.0f, 1.0f, 0.0f);
         Cadeira();
     glPopMatrix();
