@@ -46,6 +46,23 @@ void Cadeira() {
         Pe();
     glPopMatrix();
     
+    // Barras diagonais em X (usando Pe)
+    // Frente esquerda para trás direita
+    glPushMatrix();
+        glTranslatef(0.0f, -0.5f, 0.0f);     // Centraliza na base
+        glRotatef(45, 0.0f, 1.0f, 0.0f);     // Roda para cruzar os pés
+        glScalef(1.4f, 0.2f, 0.2f);          // Estica a peça na horizontal
+        Pe();
+    glPopMatrix();
+
+    // Frente direita para trás esquerda
+    glPushMatrix();
+        glTranslatef(0.0f, -0.5f, 0.0f);
+        glRotatef(-45, 0.0f, 1.0f, 0.0f);
+        glScalef(1.4f, 0.2f, 0.2f);
+        Pe();
+    glPopMatrix();
+
     // Assento inferior
     glPushMatrix();
         Assento();
@@ -58,6 +75,7 @@ void Cadeira() {
         Assento();
     glPopMatrix();
 }
+
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
