@@ -1,5 +1,12 @@
 #include <GL/glut.h>
 
+void jogoAmericano(){
+    glPushMatrix();
+        glScalef(1.2f, 0.1f, 1.2f);
+        glutSolidCube(1.0);
+    glPopMatrix();
+}
+
 void Pe() {
     glPushMatrix();
         glScalef(0.2f, 1.0f, 0.2f);  // Deixa o cubo alto e estreito como um pé de cadeira
@@ -63,7 +70,7 @@ void display() {
 
     // Câmera
     gluLookAt(
-        3.0, 3.0, 5.0,   // posição da câmera 
+        -1.0, 4.0, 4.0,   // posição da câmera 
         0.0, 0.0, 0.0,   // olha para a origem
         0.0, 1.0, 0.0    // vetor para cima
     );
@@ -95,6 +102,8 @@ void display() {
         glRotatef(180, 0.0f, 1.0f, 0.0f);
         Cadeira();
     glPopMatrix();
+
+    jogoAmericano();
 
     glFlush();
 }
