@@ -7,6 +7,33 @@ void jogoAmericano(){
     glPopMatrix();
 }
 
+void Copo() {
+    GLUquadric* quad = gluNewQuadric();
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glColor4f(0.8f, 0.9f, 1.0f, 0.3f); // Cor de vidro (azulada e translúcida)
+
+    // Base do copo (um disco grosso)
+    glPushMatrix();
+        glTranslatef(0.0f, -0.4f, 0.0f);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+        gluDisk(quad, 0.0f, 0.25f, 64, 1); // Disco base
+        glTranslatef(0.0f, 0.0f, -0.02f);  // Deixa um pouco espesso
+        gluCylinder(quad, 0.25f, 0.25f, 0.02f, 64, 1); // Base com volume
+    glPopMatrix();
+
+    // Corpo do copo (cilindro afunilado)
+    glPushMatrix();
+        glTranslatef(0.0f, -0.4f, 0.0f);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+        gluCylinder(quad, 0.25f, 0.20f, 0.8f, 64, 64); // Corpo
+    glPopMatrix();
+
+    gluDeleteQuadric(quad);
+}
+
 void Pe() {
     glPushMatrix();
         glScalef(0.2f, 1.0f, 0.2f);  // Deixa o cubo alto e estreito como um pé de cadeira
@@ -83,12 +110,14 @@ void display() {
 
     // Câmera
     gluLookAt(
-        -1.0, -2.0, 4.0,   // posição da câmera 
+        -1.0, 0.0, 4.0,   // posição da câmera 
         0.0, 0.0, 0.0,   // olha para a origem
         0.0, 1.0, 0.0    // vetor para cima
     );
     
-    Mesa();
+    //Mesa();
+
+    Copo();
 
     /*
     // Cadeira dianteira direita
