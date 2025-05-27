@@ -2,7 +2,7 @@
 
 void jogoAmericano(){
     glPushMatrix();
-        glScalef(1.2f, 0.1f, 1.2f);
+        glScalef(1.2f, 0.01f, 1.2f);
         glutSolidCube(1.0);
     glPopMatrix();
 }
@@ -23,9 +23,16 @@ void Assento(){
 
 void Mesa(){
     glPushMatrix();
-        glScalef(6.0f, 0.1f, 2.0f); // Transformei em um plano
+        glScalef(7.0f, 0.1f, 3.0f); // Transformei em um plano
         glutSolidCube(1.0);
     glPopMatrix();
+
+    // Colocando o jogo americano na mesa
+    glPushMatrix(); glTranslatef(-1.8f, 0.1f, -0.8f); glScalef(1.5f, 1.0f, 0.8f); jogoAmericano(); glPopMatrix();
+    glPushMatrix(); glTranslatef(1.8f, 0.1f, -0.8f); glScalef(1.5f, 1.0f, 0.8f); jogoAmericano(); glPopMatrix();
+    glPushMatrix(); glTranslatef(-1.8f, 0.1f, 0.8f); glScalef(1.5f, 1.0f, 0.8f); jogoAmericano(); glPopMatrix();
+    glPushMatrix(); glTranslatef(1.8f, 0.1f, 0.8f); glScalef(1.5f, 1.0f, 0.8f); jogoAmericano(); glPopMatrix();
+
 }
 
 void Cadeira() {
@@ -38,14 +45,14 @@ void Cadeira() {
     // diagonais 
     glPushMatrix(); 
         glTranslatef(0.0f, -0.5f, -0.5f);
-        glScalef(1.0f, 1.0f, 0.5f); 
+        glScalef(1.2f, 1.0f, 0.5f); 
         glRotatef(50, 0.0f, 0.0f, 1.0f);
         Pe();
     glPopMatrix();
 
     glPushMatrix(); 
         glTranslatef(0.0f, -0.5f, -0.5f); 
-        glScalef(1.0f, 1.0f, 0.5f); 
+        glScalef(1.2f, 1.0f, 0.5f); 
         glRotatef(-50, 0.0f, 0.0f, 1.0f);
         Pe();
     glPopMatrix();
@@ -70,7 +77,7 @@ void display() {
 
     // Câmera
     gluLookAt(
-        -1.0, 4.0, 4.0,   // posição da câmera 
+        -1.0, 3.0, 4.0,   // posição da câmera 
         0.0, 0.0, 0.0,   // olha para a origem
         0.0, 1.0, 0.0    // vetor para cima
     );
