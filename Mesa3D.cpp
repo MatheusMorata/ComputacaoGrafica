@@ -34,6 +34,42 @@ void Copo() {
     gluDeleteQuadric(quad);
 }
 
+void Prato(){
+    GLUquadric* quad = gluNewQuadric();
+
+    // Cor cinza fosco (cerâmica simples)
+    glColor3f(0.6f, 0.6f, 0.6f);
+
+    // Base do prato (um disco pequeno no fundo)
+    glPushMatrix();
+        glTranslatef(0.0f, -0.05f, 0.0f); // Levemente abaixo
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+        gluDisk(quad, 0.0f, 0.08f, 64, 1); // Centro do prato
+    glPopMatrix();
+
+    // Parte interna arredondada (como funil raso)
+    for (float i = 0; i < 10; i++) {
+        float r1 = 0.08f + i * 0.012f;
+        float r2 = r1 + 0.012f;
+        float h = 0.005f;
+
+        glPushMatrix();
+            glTranslatef(0.0f, -0.05f + i * h, 0.0f);
+            glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+            gluCylinder(quad, r1, r2, h, 64, 1);
+        glPopMatrix();
+    }
+
+    // Borda externa
+    glPushMatrix();
+        glTranslatef(0.0f, 0.0f, 0.0f);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+        gluCylinder(quad, 0.2f, 0.22f, 0.02f, 64, 1); // Borda levemente aberta
+    glPopMatrix();
+
+    gluDeleteQuadric(quad);
+}
+
 void Pe() {
     glPushMatrix();
         glScalef(0.2f, 1.0f, 0.2f);  // Deixa o cubo alto e estreito como um pé de cadeira
@@ -117,7 +153,7 @@ void display() {
     
     //Mesa();
 
-    Copo();
+    Prato();
 
     /*
     // Cadeira dianteira direita
