@@ -10,7 +10,9 @@
 #define edu_jmu_cs_Materials_h
 
 float timer= 0.0;
-
+float lastTime = 0.0f;
+const float targetFrameTime = 1.0f / 120.0f;  // Tempo por frame para 120 FPS
+float animationSpeed = 0.8f;
 
 struct XYZ
 {
@@ -338,10 +340,23 @@ void DrawBezierSurface() {
 }
 
 void idle() {
-    timer += 0.01f;
-    generateControlPoint();
-    Surface();
-    glutPostRedisplay();
+    // Calcula o tempo atual e o delta time
+    static float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+    float newTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+    float deltaTime = newTime - currentTime;
+    currentTime = newTime;
+
+    // Atualiza o timer com velocidade controlada
+    timer += deltaTime * animationSpeed;
+    
+    // Gera a superfície apenas se necessário
+    static float lastUpdate = 0.0f;
+    if (currentTime - lastUpdate >= targetFrameTime) {
+        generateControlPoint();
+        Surface();
+        glutPostRedisplay();
+        lastUpdate = currentTime;
+    }
 }
 
 void display() {
