@@ -1,5 +1,15 @@
 #include <GL/glut.h>
 
+void cuboBranco(){
+    glColor3f(1.0f, 1.0f, 1.0f); // Cubo branco
+    glutSolidCube(1.0); 
+}
+
+void cuboAmarelo(){
+    glColor3f(1.0f, 1.0f, 0.0f); // Cubo amarelo
+    glutSolidCube(1.0); 
+}
+
 void init() {
     glEnable(GL_DEPTH_TEST);  
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);  
@@ -16,12 +26,12 @@ void display() {
               0.0, 1.0, 0.0); // Vetor "up" 
 
     // Cubo na origem (0,0,0)
-    glutSolidCube(1.0);  
+    cuboBranco(); 
 
     // Cubo nas coordendas (0, 1, 5) 
     glPushMatrix();
     glTranslatef(0.0f, 1.0f, 5.0f);
-        glutSolidCube(1.0);  
+        cuboAmarelo();  
     glPopMatrix();
 
     glutSwapBuffers(); 
